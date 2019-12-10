@@ -1,0 +1,42 @@
+{
+  "name": "knot-php/command",
+  "description": "Command line tools for kNot Framework.",
+  "keywords": ["PHP","Command line tools","kNot Framework"],
+  "homepage": "https://github.com/knot-php/command",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Katsuki Shuto",
+      "email": "stk2k@knot-framework.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.1",
+    "ext-json": "*",
+    "vlucas/phpdotenv": "~3.0",
+    "knot-module/knot-di": "~0.1",
+    "knot-module/knot-services": "~0.1",
+    "knot-module/knot-console": "~0.1",
+    "knot-module/knot-logger": "~0.1",
+    "knot-module/knot-pipeline": "~0.1",
+    "knot-module/stk2k-eventstream": "~0.1"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^6.3.0",
+    "php-coveralls/php-coveralls": "^2.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "KnotPhp\\Command\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "KnotPhp\\Command\\Test\\": "test/include/",
+      "KnotPhp\\Command\\Demo\\": "demo/include/"
+    }
+  },
+  "bin": [
+    "calgamo"
+  ]
+}

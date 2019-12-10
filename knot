@@ -1,0 +1,16 @@
+#!/usr/bin/env php
+<?php
+if (file_exists(dirname(__DIR__,2).'/autoload.php')) {
+    require dirname(__DIR__,2).'/autoload.php';
+}
+else {
+    require __DIR__.'/vendor/autoload.php';
+}
+
+if (file_exists(dirname(__DIR__,3).'/env.php')) {
+    require dirname(__DIR__,3).'/env.php';
+}
+
+(new KnotLib\Kernel\Bootstrap)
+    ->mount(new KnotPhp\Command\FileSystem\CommandFileSystem())
+    ->boot(KnotPhp\Command\App\CommandApplication::class);

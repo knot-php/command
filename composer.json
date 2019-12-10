@@ -37,6 +37,6 @@
     }
   },
   "bin": [
-    "calgamo"
+    "knot"
   ]
 }

@@ -9,12 +9,12 @@ use KnotLib\Module\Application\SimpleApplication;
 use KnotLib\Kernel\FileSystem\FileSystemInterface;
 use KnotLib\Kernel\FileSystem\AbstractFileSystem;
 
-use KnotModule\KnotConsole\Package\KnotConsolePackage;
-use KnotModule\KnotDi\KnotDiModule;
-use KnotModule\KnotLogger\KnotLoggerModule;
-use KnotModule\KnotPipeline\KnotPipelineModule;
-use KnotModule\KnotService\KnotServiceModule;
-use KnotModule\Stk2kEventStream\Stk2kEventStreamModule;
+use KnotPhp\Module\KnotConsole\Package\KnotConsolePackage;
+use KnotPhp\Module\KnotDi\KnotDiModule;
+use KnotPhp\Module\KnotLogger\KnotLoggerModule;
+use KnotPhp\Module\KnotPipeline\KnotPipelineModule;
+use KnotPhp\Module\KnotService\KnotServiceModule;
+use KnotPhp\Module\Stk2kEventStream\Stk2kEventStreamModule;
 
 use KnotPhp\Command\App\Module\CommandDiModule;
 use KnotPhp\Command\App\Module\CommandRouterModule;

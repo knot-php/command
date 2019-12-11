@@ -6,12 +6,12 @@ namespace KnotPhp\Command\App;
 use KnotLib\Kernel\Kernel\ApplicationInterface;
 use KnotLib\Kernel\Kernel\ApplicationType;
 use KnotLib\Module\Application\PluginApplication;
-use KnotModule\KnotDi\KnotDiModule;
-use KnotModule\KnotLogger\KnotLoggerModule;
-use KnotModule\KnotPipeline\KnotPipelineModule;
-use KnotModule\KnotService\KnotServiceModule;
-use KnotModule\Stk2kEventStream\Stk2kEventStreamModule;
-use KnotModule\KnotConsole\Package\KnotConsolePackage;
+use KnotPhp\Module\KnotDi\KnotDiModule;
+use KnotPhp\Module\KnotLogger\KnotLoggerModule;
+use KnotPhp\Module\KnotPipeline\KnotPipelineModule;
+use KnotPhp\Module\KnotService\KnotServiceModule;
+use KnotPhp\Module\Stk2kEventStream\Stk2kEventStreamModule;
+use KnotPhp\Module\KnotConsole\Package\KnotConsolePackage;
 use KnotPhp\Command\App\Module\CommandRouterModule;
 use KnotPhp\Command\App\Module\CommandDiModule;
 

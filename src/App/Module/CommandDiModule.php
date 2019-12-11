@@ -6,21 +6,23 @@ namespace KnotPhp\Command\App\Module;
 use Throwable;
 
 use KnotLib\Di\Container;
+use KnotLib\Kernel\Kernel\ApplicationInterface;
+use KnotLib\Kernel\Module\Components;
+use KnotLib\Kernel\Module\ModuleInterface;
+use KnotLib\Kernel\Module\AbstractModule;
+use KnotLib\Kernel\Exception\ModuleInstallationException;
+use KnotLib\Service\LoggerService;
+
+use KnotPhp\Module\KnotService\KnotServiceModule;
+
 use KnotPhp\Command\Command\DefaultConsoleIO;
 use KnotPhp\Command\Service\AliasDbFileService;
 use KnotPhp\Command\Service\CommandAutoloadService;
 use KnotPhp\Command\Service\CommandDbFileService;
 use KnotPhp\Command\Service\CommandDescriptorService;
 use KnotPhp\Command\Service\CommandExecService;
-use KnotLib\Kernel\Kernel\ApplicationInterface;
-use KnotLib\Kernel\Module\Components;
-use KnotLib\Kernel\Module\ModuleInterface;
-use KnotLib\Kernel\Module\AbstractModule;
-use KnotLib\Kernel\Exception\ModuleInstallationException;
 use KnotPhp\Command\Base\Config\AppConfig;
 use KnotPhp\Command\Service\SystemService;
-use KnotModule\KnotService\KnotServiceModule;
-use KnotLib\Service\LoggerService;
 use KnotPhp\Command\Enum\EnumLogChannels;
 use KnotPhp\Command\Service\DI;
 

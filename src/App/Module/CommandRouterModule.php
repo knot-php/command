@@ -8,7 +8,9 @@ use KnotLib\Kernel\FileSystem\Dir;
 use KnotLib\Kernel\Module\Components;
 use KnotLib\Kernel\Kernel\ApplicationInterface;
 use KnotLib\Kernel\Module\ModuleInterface;
-use KnotModule\KnotConsole\KnotShellRouterModule;
+
+use KnotPhp\Module\KnotConsole\KnotShellRouterModule;
+
 use KnotPhp\Command\App\Dispatcher\CommandDispatcher;
 use KnotPhp\Command\Service\DI;
 

@@ -14,12 +14,12 @@
     "php": ">=7.1",
     "ext-json": "*",
     "vlucas/phpdotenv": "~3.0",
-    "knot-module/knot-di": "~0.1",
-    "knot-module/knot-services": "~0.1",
-    "knot-module/knot-console": "~0.1",
-    "knot-module/knot-logger": "~0.1",
-    "knot-module/knot-pipeline": "~0.1",
-    "knot-module/stk2k-eventstream": "~0.1"
+    "knot-php/module-knot-di": "~0.1",
+    "knot-php/module-knot-services": "~0.1",
+    "knot-php/module-knot-console": "~0.1",
+    "knot-php/module-knot-logger": "~0.1",
+    "knot-php/module-knot-pipeline": "~0.1",
+    "knot-php/module-stk2k-eventstream": "~0.1"
   },
   "require-dev": {
     "phpunit/phpunit": "^6.3.0",

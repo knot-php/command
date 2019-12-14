@@ -6,7 +6,6 @@ namespace KnotPhp\Command\Service;
 use Throwable;
 
 use KnotLib\Kernel\FileSystem\FileSystemInterface;
-use KnotLib\Kernel\Request\RequestParamsType;
 use KnotLib\Kernel\Kernel\ApplicationInterface;
 use KnotLib\Kernel\Di\DiContainerInterface;
 use KnotPhp\Command\Exception\CommandExecutionException;
@@ -131,12 +130,17 @@ final class CommandExecService extends CommandBaseService
      * @param int $skip_args
      *
      * @return array
+     * @noinspection PhpUnusedParameterInspection
      */
     private function getArgs(array $ordered_args, array $named_args, int $skip_args) : array
     {
         $request = $this->app->request();
-        $seq_params = $request->getParams(RequestParamsType::CONSOLE_ORDERED);
-        $named_params = $request->getParams(RequestParamsType::CONSOLE_NAMED);
+        $seq_params = array_filter($request->getServerParams(), function($value, $key){
+            return is_int($key);
+        }, ARRAY_FILTER_USE_BOTH);
+        $named_params = array_filter($request->getServerParams(), function($value, $key){
+            return is_string($key);
+        }, ARRAY_FILTER_USE_BOTH);
 
         $args = [];
 

@@ -3,16 +3,16 @@ declare(strict_types=1);
 
 namespace KnotPhp\Command\Test;
 
-use KnotPhp\Command\FileSystem\CommandFileSystem;
 use PHPUnit\Framework\TestCase;
 
+use KnotLib\Console\Request\ShellRequest;
+use KnotPhp\Command\FileSystem\CommandFileSystem;
 use KnotPhp\Command\Env\EnvKey;
 use KnotPhp\Command\Command\DefaultConsoleIO;
 use KnotPhp\Command\Service\AliasDbFileService;
 use KnotPhp\Command\Service\CommandDbFileService;
 use KnotPhp\Command\Service\CommandDescriptorService;
 use KnotPhp\Command\Service\CommandExecService;
-use KnotLib\Kernel\Request\PhpArrayRequest;
 
 final class CommandExecServiceTest extends TestCase
 {
@@ -59,19 +59,19 @@ final class CommandExecServiceTest extends TestCase
         $di = new TestDiContainer();
         $svc = new CommandExecService($fs, $app, $command_db, $alias_db, $io);
 
-        $request = new PhpArrayRequest([
-            'David', 'Earl Gray tea', '--age' => 21
+        $request = new ShellRequest([
+            'David', 'Earl Gray tea', '--age', '21'
         ]);
 
         $app->request($request);
 
         ob_start();
-        $svc->executeCommand($di, 'foo:bar', 2);
+        $svc->executeCommand($di, 'foo:bar', 0);
         $output = ob_get_clean();
 
         $expected = <<<OUTPUT
-My name is: 
-And my favorite is: 
+My name is: David
+And my favorite is: Earl Gray tea
 I am 21 years old.
 Command(foo:bar) finished with exit code 0
 OUTPUT;

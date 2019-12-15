@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace KnotPhp\Command\App\Module;
 
 use KnotLib\Kernel\FileSystem\FileSystemInterface;
-use KnotLib\Kernel\FileSystem\Dir;
 use KnotLib\Kernel\Module\Components;
 use KnotLib\Kernel\Kernel\ApplicationInterface;
 use KnotLib\Kernel\Module\ModuleInterface;
@@ -16,6 +15,15 @@ use KnotPhp\Command\Service\DI;
 
 class CommandRouterModule extends KnotShellRouterModule implements ModuleInterface
 {
+    const ROUTING_RULE = [
+        "system:version" => "system.version",
+        "command:make" => "command.make",
+        "command:install" => "command.install",
+        "command:autoload" => "command.autoload",
+        "command:list" => "command.list",
+        "command:help" => "command.help",
+    ];
+
     /** @var FileSystemInterface */
     private $fs;
 
@@ -63,8 +71,6 @@ class CommandRouterModule extends KnotShellRouterModule implements ModuleInterfa
      */
     public function getRoutingRule(): array
     {
-        $config_file = $this->fs->getFile(Dir::CONFIG, 'route.config.php');
-        /** @noinspection PhpIncludeInspection */
-        return require($config_file);
+        return self::ROUTING_RULE;
     }
 }

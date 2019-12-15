@@ -3,11 +3,14 @@ declare(strict_types=1);
 
 namespace KnotPhp\Command\FileSystem;
 
+use KnotLib\Kernel\FileSystem\FileSystemFactoryInterface;
 use KnotPhp\Command\Env\EnvKey;
 use KnotLib\Kernel\FileSystem\Dir;
 use KnotLib\Kernel\FileSystem\FileSystemInterface;
 use KnotLib\Kernel\FileSystem\AbstractFileSystem;
 use KnotLib\Kernel\NullObject\NullFileSystem;
+use KnotPhp\Command\Exception\ClassImplementationException;
+use KnotPhp\Command\Exception\ClassNotFoundException;
 
 class CommandFileSystem extends AbstractFileSystem implements FileSystemInterface
 {
@@ -39,6 +42,9 @@ class CommandFileSystem extends AbstractFileSystem implements FileSystemInterfac
      * Returns runtime file system
      *
      * @return FileSystemInterface
+     *
+     * @throws ClassNotFoundException
+     * @throws ClassImplementationException
      */
     protected function getRuntimeFileSystem() : FileSystemInterface
     {
@@ -49,6 +55,17 @@ class CommandFileSystem extends AbstractFileSystem implements FileSystemInterfac
         }
 
         $runtime_fs_factory_class = str_replace('.', self::NAMESPACE_SEPARATOR, $runtime_fs_factory_class);
+
+        // confirm class is loaded
+        if (!class_exists($runtime_fs_factory_class)){
+            $msg = sprintf("Class(%s) not found defined at Env value: %s", $runtime_fs_factory_class, EnvKey::COMMAND_FILESYSTEM_FACTORY);
+            throw new ClassNotFoundException($msg);
+        }
+
+        // confirm factory class implements FileSystemFactoryInterface
+        if (!in_array(FileSystemFactoryInterface::class, class_implements($runtime_fs_factory_class))){
+            throw new ClassImplementationException($runtime_fs_factory_class, FileSystemFactoryInterface::class);
+        }
 
         return forward_static_call([$runtime_fs_factory_class, 'createFileSystem']);
     }

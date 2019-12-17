@@ -6,13 +6,13 @@ namespace KnotPhp\Command\App;
 use KnotLib\Kernel\Kernel\ApplicationInterface;
 use KnotLib\Kernel\Kernel\ApplicationType;
 use KnotLib\Module\Application\PluginApplication;
+use KnotPHP\Command\App\Module\CommandModuleFactory;
 use KnotPhp\Module\KnotDi\KnotDiModule;
 use KnotPhp\Module\KnotLogger\KnotLoggerModule;
 use KnotPhp\Module\KnotPipeline\KnotPipelineModule;
 use KnotPhp\Module\KnotService\KnotServiceModule;
 use KnotPhp\Module\Stk2kEventStream\Stk2kEventStreamModule;
 use KnotPhp\Module\KnotConsole\Package\KnotConsolePackage;
-use KnotPhp\Command\App\Module\CommandRouterModule;
 use KnotPhp\Command\App\Module\CommandDiModule;
 
 class CommandApplication extends PluginApplication
@@ -41,8 +41,9 @@ class CommandApplication extends PluginApplication
         $this->requireModule(KnotDiModule::class);
         $this->requireModule(KnotServiceModule::class);
         $this->requireModule(KnotLoggerModule::class);
-        $this->requireModule(CommandRouterModule::class);
         $this->requireModule(CommandDiModule::class);
+
+        $this->addModuleFactory(new CommandModuleFactory());
 
         return $this;
     }

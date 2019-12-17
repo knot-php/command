@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace KnotPHP\Command\App\Module;
+namespace KnotPhp\Command\App\Module;
 
 use KnotLib\Kernel\Kernel\ApplicationInterface;
 use KnotLib\Kernel\Module\ModuleFactoryInterface;

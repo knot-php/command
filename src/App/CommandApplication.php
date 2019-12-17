@@ -6,7 +6,8 @@ namespace KnotPhp\Command\App;
 use KnotLib\Kernel\Kernel\ApplicationInterface;
 use KnotLib\Kernel\Kernel\ApplicationType;
 use KnotLib\Module\Application\PluginApplication;
-use KnotPHP\Command\App\Module\CommandModuleFactory;
+
+use KnotPhp\Command\App\Module\CommandModuleFactory;
 use KnotPhp\Module\KnotDi\KnotDiModule;
 use KnotPhp\Module\KnotLogger\KnotLoggerModule;
 use KnotPhp\Module\KnotPipeline\KnotPipelineModule;

@@ -8,6 +8,7 @@ use KnotLib\Kernel\Kernel\ApplicationType;
 use KnotLib\Module\Application\PluginApplication;
 
 use KnotPhp\Command\App\Module\CommandModuleFactory;
+use KnotPhp\Module\KnotConsole\Package\KnotArrayConfigConsolePackage;
 use KnotPhp\Module\KnotDi\KnotDiModule;
 use KnotPhp\Module\KnotLogger\KnotLoggerModule;
 use KnotPhp\Module\KnotPipeline\KnotPipelineModule;
@@ -34,7 +35,7 @@ class CommandApplication extends PluginApplication
     public function configure() : ApplicationInterface
     {
         // install packages
-        $this->requirePackage(KnotConsolePackage::class);
+        $this->requirePackage(KnotArrayConfigConsolePackage::class);
 
         // install modules
         $this->requireModule(Stk2kEventStreamModule::class);

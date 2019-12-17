@@ -74,11 +74,11 @@ class CommandDispatcher implements ShellDispatcherInterface
             switch($route_name){
                 case ShellRouter::ROUTE_NOT_FOUND:
                     // find command and execute
-                    $command_db = $container[DI::SERVICE_COMMAND_DB_FILE];
-                    $alias_db   = $container[DI::SERVICE_ALIAS_DB_FILE];
-                    $autoload   = $container[DI::SERVICE_COMMAND_AUTOLOAD];
-                    $exec       = $container[DI::SERVICE_COMMAND_EXEC];
-                    $io         = $container[DI::COMPONENT_CONSOLE_IO];
+                    $command_db = $container[DI::URI_SERVICE_COMMAND_DB_FILE];
+                    $alias_db   = $container[DI::URI_SERVICE_ALIAS_DB_FILE];
+                    $autoload   = $container[DI::URI_SERVICE_COMMAND_AUTOLOAD];
+                    $exec       = $container[DI::URI_SERVICE_COMMAND_EXEC];
+                    $io         = $container[DI::URI_COMPONENT_CONSOLE_IO];
 
                     /** @var AliasDbFileService $alias_db */
                     $alias_db->load();
@@ -101,7 +101,7 @@ class CommandDispatcher implements ShellDispatcherInterface
 
                 // show system version
                 case 'system.version':
-                    $system   = $container[DI::SERVICE_SYSTEM];
+                    $system   = $container[DI::URI_SERVICE_SYSTEM];
                     (new SystemCommandResponder($logger))
                         ->version($system);
                     return true;
@@ -109,8 +109,8 @@ class CommandDispatcher implements ShellDispatcherInterface
                 // make command
                 case 'command.make':
                     $provider_class = $argv[2] ?? '';
-                    $desc_s     = $container[DI::SERVICE_COMMAND_DESCRIPTOR];
-                    $io         = $container[DI::COMPONENT_CONSOLE_IO];
+                    $desc_s     = $container[DI::URI_SERVICE_COMMAND_DESCRIPTOR];
+                    $io         = $container[DI::URI_COMPONENT_CONSOLE_IO];
                     (new CommandCommandResponder($container, $logger, $fs, $io))
                         ->makeCommand($desc_s, $provider_class);
                     return true;
@@ -118,18 +118,18 @@ class CommandDispatcher implements ShellDispatcherInterface
                 // install command
                 case 'command.install':
                     $comand_id = $argv[2] ?? '';
-                    $desc_s     = $container[DI::SERVICE_COMMAND_DESCRIPTOR];
-                    $command_db = $container[DI::SERVICE_COMMAND_DB_FILE];
-                    $alias_db   = $container[DI::SERVICE_ALIAS_DB_FILE];
-                    $io         = $container[DI::COMPONENT_CONSOLE_IO];
+                    $desc_s     = $container[DI::URI_SERVICE_COMMAND_DESCRIPTOR];
+                    $command_db = $container[DI::URI_SERVICE_COMMAND_DB_FILE];
+                    $alias_db   = $container[DI::URI_SERVICE_ALIAS_DB_FILE];
+                    $io         = $container[DI::URI_COMPONENT_CONSOLE_IO];
                     (new CommandCommandResponder($container, $logger, $fs, $io))
                         ->installCommand($desc_s, $command_db, $alias_db, $comand_id);
                     return true;
 
                 // list command
                 case 'command.list':
-                    $desc_s     = $container[DI::SERVICE_COMMAND_DESCRIPTOR];
-                    $io         = $container[DI::COMPONENT_CONSOLE_IO];
+                    $desc_s     = $container[DI::URI_SERVICE_COMMAND_DESCRIPTOR];
+                    $io         = $container[DI::URI_COMPONENT_CONSOLE_IO];
                     (new CommandCommandResponder($container, $logger, $fs, $io))
                         ->listCommand($desc_s);
                     return true;
@@ -137,16 +137,16 @@ class CommandDispatcher implements ShellDispatcherInterface
                 // help command
                 case 'command.help':
                     $comand_id = $argv[2] ?? '';
-                    $desc_s     = $container[DI::SERVICE_COMMAND_DESCRIPTOR];
-                    $io         = $container[DI::COMPONENT_CONSOLE_IO];
+                    $desc_s     = $container[DI::URI_SERVICE_COMMAND_DESCRIPTOR];
+                    $io         = $container[DI::URI_COMPONENT_CONSOLE_IO];
                     (new CommandCommandResponder($container, $logger, $fs, $io))
                         ->helpCommand($desc_s, $comand_id);
                     return true;
 
                 // autoload command
                 case 'command.autoload':
-                    $autoload   = $container[DI::SERVICE_COMMAND_AUTOLOAD];
-                    $io         = $container[DI::COMPONENT_CONSOLE_IO];
+                    $autoload   = $container[DI::URI_SERVICE_COMMAND_AUTOLOAD];
+                    $io         = $container[DI::URI_COMPONENT_CONSOLE_IO];
                     (new CommandCommandResponder($container, $logger, $fs, $io))
                         ->generateAutoloadCache($autoload);
                     return true;

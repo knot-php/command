@@ -57,9 +57,12 @@ class CommandDispatcher implements ShellDispatcherInterface
      */
     public function dispatch(string $path, array $vars, string $route_name) : bool
     {
+        global $argv;
+
         $logger = $this->getLogger();
         
         $logger->debug('dispatched: ' . $route_name);
+        $logger->debug('argv: ' . print_r($argv, true));
         
         $container = $this->app->di();
         

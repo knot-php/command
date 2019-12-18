@@ -11,7 +11,7 @@ if (file_exists(dirname(__DIR__,3).'/env.php')) {
     require dirname(__DIR__,3).'/env.php';
 }
 
-(new KnotLib\Kernel\Knot)
+(new KnotLib\Kernel\Bootstrap)
     ->withFileSystem(new KnotPhp\Command\FileSystem\CommandFileSystem())
     ->withExceptionHandler(function(Throwable $e){
         echo $e->getMessage(), PHP_EOL;

@@ -14,7 +14,6 @@ use KnotPhp\Module\KnotLogger\KnotLoggerModule;
 use KnotPhp\Module\KnotPipeline\KnotPipelineModule;
 use KnotPhp\Module\KnotService\KnotServiceModule;
 use KnotPhp\Module\Stk2kEventStream\Stk2kEventStreamModule;
-use KnotPhp\Module\KnotConsole\Package\KnotConsolePackage;
 use KnotPhp\Command\App\Module\CommandDiModule;
 
 class CommandApplication extends PluginApplication

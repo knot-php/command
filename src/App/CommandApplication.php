@@ -5,7 +5,8 @@ namespace KnotPhp\Command\App;
 
 use KnotLib\Kernel\Kernel\ApplicationInterface;
 use KnotLib\Kernel\Kernel\ApplicationType;
-use KnotLib\Module\Application\PluginApplication;
+use KnotLib\Module\Application\PluginModuleLoader;
+use KnotLib\Module\Application\SimpleApplication;
 
 use KnotPhp\Command\App\Module\CommandModuleFactory;
 use KnotPhp\Module\KnotConsole\Package\KnotArrayConfigConsolePackage;
@@ -16,7 +17,7 @@ use KnotPhp\Module\KnotService\KnotServiceModule;
 use KnotPhp\Module\Stk2kEventStream\Stk2kEventStreamModule;
 use KnotPhp\Command\App\Module\CommandDiModule;
 
-class CommandApplication extends PluginApplication
+class CommandApplication extends SimpleApplication
 {
     /**
      * {@inheritDoc}
@@ -45,6 +46,8 @@ class CommandApplication extends PluginApplication
         $this->requireModule(CommandDiModule::class);
 
         $this->addModuleFactory(new CommandModuleFactory());
+
+        PluginModuleLoader::loadPluginModules($this);
 
         return $this;
     }

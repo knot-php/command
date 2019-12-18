@@ -58,7 +58,7 @@ class CommandFileSystem extends AbstractFileSystem implements FileSystemInterfac
 
         // confirm class is loaded
         if (!class_exists($runtime_fs_factory_class)){
-            $msg = sprintf("Class(%s) not found defined at Env value: %s", $runtime_fs_factory_class, EnvKey::COMMAND_FILESYSTEM_FACTORY);
+            $msg = sprintf("Class(%s) not found defined at env value: %s", $runtime_fs_factory_class, EnvKey::COMMAND_FILESYSTEM_FACTORY);
             throw new ClassNotFoundException($msg);
         }
 

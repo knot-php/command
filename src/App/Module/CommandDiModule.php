@@ -81,7 +81,7 @@ class CommandDiModule extends AbstractModule implements ModuleInterface
                 return new AppConfig($c['arrays.app_config']);
             };
             // components.console_io component
-            $c[DI::COMPONENT_CONSOLE_IO] = function(){
+            $c[DI::URI_COMPONENT_CONSOLE_IO] = function(){
                 return new DefaultConsoleIO();
             };
 
@@ -107,37 +107,37 @@ class CommandDiModule extends AbstractModule implements ModuleInterface
             //====================================
 
             // services.logger factory
-            $c->extend(DI::SERVICE_LOGGER, function($component){
+            $c->extend(DI::URI_SERVICE_LOGGER, function($component){
                 /** @var LoggerService $component */
                 $component->setChannelId(EnumLogChannels::COMMAND);
                 return $component;
             });
             // services.system factory
-            $c[DI::SERVICE_SYSTEM] = function() {
+            $c[DI::URI_SERVICE_SYSTEM] = function() {
                 return new SystemService();
             };
             // services.command_autoload factory
-            $c[DI::SERVICE_COMMAND_AUTOLOAD] = function(Container $c) use($fs){
-                $db_file = $c[DI::SERVICE_COMMAND_DB_FILE];
+            $c[DI::URI_SERVICE_COMMAND_AUTOLOAD] = function(Container $c) use($fs){
+                $db_file = $c[DI::URI_SERVICE_COMMAND_DB_FILE];
                 return new CommandAutoloadService($fs, $db_file);
             };
             // services.command_db_file factory
-            $c[DI::SERVICE_COMMAND_DB_FILE] = function() use($fs){
+            $c[DI::URI_SERVICE_COMMAND_DB_FILE] = function() use($fs){
                 return new CommandDbFileService($fs);
             };
             // services.alias_db_file factory
-            $c[DI::SERVICE_ALIAS_DB_FILE] = function() use($fs){
+            $c[DI::URI_SERVICE_ALIAS_DB_FILE] = function() use($fs){
                 return new AliasDbFileService($fs);
             };
             // services.command_descriptor factory
-            $c[DI::SERVICE_COMMAND_DESCRIPTOR] = function() use($fs){
+            $c[DI::URI_SERVICE_COMMAND_DESCRIPTOR] = function() use($fs){
                 return new CommandDescriptorService($fs);
             };
             // services.command_exec factory
-            $c[DI::SERVICE_COMMAND_EXEC] = function(Container $c) use($fs, $app){
-                $command_db = $c[DI::SERVICE_COMMAND_DB_FILE];
-                $alias_db  = $c[DI::SERVICE_ALIAS_DB_FILE];
-                $io = $c[DI::COMPONENT_CONSOLE_IO];
+            $c[DI::URI_SERVICE_COMMAND_EXEC] = function(Container $c) use($fs, $app){
+                $command_db = $c[DI::URI_SERVICE_COMMAND_DB_FILE];
+                $alias_db  = $c[DI::URI_SERVICE_ALIAS_DB_FILE];
+                $io = $c[DI::URI_COMPONENT_CONSOLE_IO];
                 return new CommandExecService($fs, $app, $command_db, $alias_db, $io);
             };
 

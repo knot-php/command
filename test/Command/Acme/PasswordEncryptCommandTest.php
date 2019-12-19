@@ -26,6 +26,7 @@ final class PasswordEncryptCommandTest extends TestCase
     "class_root": "{$class_root}",
     "class_name": "KnotPhp.Command.Command.Acme.PasswordEncryptComand",
     "class_base": "KnotPhp.Command",
+    "required": [],
     "args": {
         "ordered": [
             "password"

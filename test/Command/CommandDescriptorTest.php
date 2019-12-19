@@ -123,6 +123,7 @@ final class CommandDescriptorTest extends TestCase
     "class_root": "/path/to/command_root",
     "class_name": "Foo.Bar",
     "class_base": "Foo",
+    "required": [],
     "args": {
         "ordered": [
             "name",

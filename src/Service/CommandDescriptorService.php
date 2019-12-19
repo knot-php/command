@@ -5,13 +5,14 @@ namespace KnotPhp\Command\Service;
 
 use Stk2k\File\File;
 
-use KnotPhp\Command\Command\ClassNameTrait;
+use KnotLib\Kernel\FileSystem\Dir;
+use KnotLib\Kernel\FileSystem\FileSystemInterface;
+
 use KnotPhp\Command\Command\Command;
 use KnotPhp\Command\Command\CommandDescriptor;
 use KnotPhp\Command\Exception\DescriptorFileFormatException;
 use KnotPhp\Command\Exception\DescriptorFileNotFoundException;
-use KnotLib\Kernel\FileSystem\Dir;
-use KnotLib\Kernel\FileSystem\FileSystemInterface;
+use KnotPhp\Command\Command\ClassNameTrait;
 
 class CommandDescriptorService extends CommandBaseService
 {
@@ -140,8 +141,8 @@ class CommandDescriptorService extends CommandBaseService
             'command_id' => $descriptor['command_id'] ?? '',
             'aliases' => $descriptor['aliases'] ?? [],
             'class_root' => $descriptor['class_root'] ?? '',
-            'class_name' => self::getRealClassName($descriptor['class_name'] ?? ''),
-            'class_base' => self::getRealClassName($descriptor['class_base'] ?? ''),
+            'class_name' => $descriptor['class_name'] ?? '',
+            'class_base' => $descriptor['class_base'] ?? '',
             'required' => $descriptor['required'] ?? [],
             'ordered_args' => $descriptor['ordered_args'] ?? [],
             'named_args' => $descriptor['named_args'] ?? [],

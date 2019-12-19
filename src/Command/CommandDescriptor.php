@@ -9,6 +9,8 @@ use KnotPhp\Command\Command\DescriptorKey as Key;
 
 final class CommandDescriptor implements JsonSerializable
 {
+    use ClassNameTrait;
+
     /** @var string */
     private $command_id;
 
@@ -75,7 +77,7 @@ final class CommandDescriptor implements JsonSerializable
      */
     public function getClassName() : string
     {
-        return $this->class_name;
+        return self::getRealClassName($this->class_name);
     }
 
     /**
@@ -91,7 +93,7 @@ final class CommandDescriptor implements JsonSerializable
      */
     public function getClassBase() : string
     {
-        return $this->class_base;
+        return self::getRealClassName($this->class_base);
     }
 
     /**
@@ -99,7 +101,9 @@ final class CommandDescriptor implements JsonSerializable
      */
     public function getRequired() : array
     {
-        return $this->required;
+        return array_map(function($item){
+            return self::getRealClassName($item);
+        }, $this->required);
     }
 
     /**
@@ -135,9 +139,11 @@ final class CommandDescriptor implements JsonSerializable
             'command_id' => $this->command_id,
             'aliases' => $this->aliases,
             'class_root' => $this->class_root,
-            'class_name' => $this->class_name,
-            'class_base' => $this->class_base,
-            'required' => $this->required,
+            'class_name' => self::getVirtualClassName($this->class_name),
+            'class_base' => self::getVirtualClassName($this->class_base),
+            'required' => array_map(function($item){
+                    return self::getVirtualClassName($item);
+                }, $this->required),
             'args' => [
                 'ordered' => $this->ordered_args,
                 'named' => $this->named_args,

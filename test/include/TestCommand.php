@@ -33,7 +33,9 @@ final class TestCommand extends AbstractCommand implements CommandInterface
             'class_root' => __DIR__,
             'class_name' => str_replace('\\', '.', self::class),
             'class_base' => 'Test',
-            'required' => [],
+            'required' => [
+                TestRequiredModule::class,
+            ],
             'ordered_args' => ['name', 'favorite'],
             'named_args' => ['--age' => 'age'],
             'command_help' => [

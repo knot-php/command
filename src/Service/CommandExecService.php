@@ -102,13 +102,17 @@ final class CommandExecService extends CommandBaseService
         $command_obj = new $class_name($di);
 
         // install modules required by command
-        $this->app->installModules($modules_required);
+        foreach($modules_required as $module){
+            $this->app->installModule($module);
+            $this->io->output("Installed module: {$module}");
+        }
 
         // execute command
         $ret = -1;
         try{
             $combined_args = $this->getArgs($ordered_args, $named_args, $skip_args);
 
+            $this->io->output("Executing command({$command_id})");
             $ret = $command_obj->execute($combined_args, $this->io);
         }
         catch(Throwable $e)

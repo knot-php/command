@@ -70,6 +70,8 @@ final class CommandExecServiceTest extends TestCase
         $output = ob_get_clean();
 
         $expected = <<<OUTPUT
+Installed module: KnotPhp\Command\Test\TestRequiredModule
+Executing command(foo:bar)
 My name is: David
 And my favorite is: Earl Gray tea
 I am 21 years old.

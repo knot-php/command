@@ -9,7 +9,7 @@ use KnotLib\Module\Application\SimpleApplication;
 use KnotLib\Kernel\FileSystem\FileSystemInterface;
 use KnotLib\Kernel\FileSystem\AbstractFileSystem;
 
-use KnotPhp\Module\KnotConsole\Package\KnotConsolePackage;
+use KnotPhp\Module\KnotConsole\Package\KnotArrayConfigConsolePackage;
 use KnotPhp\Module\KnotDi\KnotDiModule;
 use KnotPhp\Module\KnotLogger\KnotLoggerModule;
 use KnotPhp\Module\KnotPipeline\KnotPipelineModule;
@@ -17,7 +17,6 @@ use KnotPhp\Module\KnotService\KnotServiceModule;
 use KnotPhp\Module\Stk2kEventStream\Stk2kEventStreamModule;
 
 use KnotPhp\Command\App\Module\CommandDiModule;
-use KnotPhp\Command\App\Module\CommandRouterModule;
 
 final class TestApplication extends SimpleApplication
 {
@@ -49,7 +48,7 @@ final class TestApplication extends SimpleApplication
     public function configure() : ApplicationInterface
     {
         // install packages
-        $this->requirePackage(KnotConsolePackage::class);
+        $this->requirePackage(KnotArrayConfigConsolePackage::class);
 
         // install modules
         $this->requireModule(Stk2kEventStreamModule::class);
@@ -57,7 +56,6 @@ final class TestApplication extends SimpleApplication
         $this->requireModule(KnotDiModule::class);
         $this->requireModule(KnotServiceModule::class);
         $this->requireModule(KnotLoggerModule::class);
-        $this->requireModule(CommandRouterModule::class);
         $this->requireModule(CommandDiModule::class);
 
         return $this;

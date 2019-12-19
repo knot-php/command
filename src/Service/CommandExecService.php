@@ -104,7 +104,7 @@ final class CommandExecService extends CommandBaseService
         // install modules required by command
         foreach($modules_required as $module){
             $this->app->installModule($module);
-            $this->io->output("Installed module: {$module}");
+            $this->io->output("Installed required module: {$module}");
         }
 
         // execute command

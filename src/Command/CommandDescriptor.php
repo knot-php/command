@@ -25,6 +25,9 @@ final class CommandDescriptor implements JsonSerializable
     private $class_base;
 
     /** @var array */
+    private $required;
+
+    /** @var array */
     private $ordered_args;
 
     /** @var array */
@@ -45,6 +48,7 @@ final class CommandDescriptor implements JsonSerializable
         $this->class_root          = $command_spec[Key::CLASS_ROOT] ?? '';
         $this->class_name          = $command_spec[Key::CLASS_NAME] ?? '';
         $this->class_base          = $command_spec[Key::CLASS_BASE] ?? '';
+        $this->required            = $command_spec[Key::REQUIRED] ?? [];
         $this->ordered_args        = $command_spec[Key::ORDERED_ARGS] ?? [];
         $this->named_args          = $command_spec[Key::NAMED_ARGS] ?? [];
         $this->command_help        = $command_spec[Key::COMMAND_HELP] ?? [];
@@ -93,6 +97,14 @@ final class CommandDescriptor implements JsonSerializable
     /**
      * @return array
      */
+    public function getRequired() : array
+    {
+        return $this->required;
+    }
+
+    /**
+     * @return array
+     */
     public function getOrderdArgs() : array
     {
         return $this->ordered_args;
@@ -125,6 +137,7 @@ final class CommandDescriptor implements JsonSerializable
             'class_root' => $this->class_root,
             'class_name' => $this->class_name,
             'class_base' => $this->class_base,
+            'required' => $this->required,
             'args' => [
                 'ordered' => $this->ordered_args,
                 'named' => $this->named_args,

@@ -12,12 +12,19 @@ $class_name = str_replace('\\', '.', $class_name);
 $class_base = $desc->getClassBase();
 $class_base = str_replace('\\', '.', $class_base);
 
+$required_modules = $desc->getRequired();
+foreach($required_modules as $key => $module){
+    $module = str_replace('\\', '.', $module);
+    $required_modules[$key] = $module;
+}
+
 $data = [
     'command_id' => $desc->getCommandId(),
     'aliases' => $desc->getAliases(),
     'class_root' => $class_root,
     'class_name' => $class_name,
     'class_base' => $class_base,
+    'required' => $required_modules,
     'ordered_args'  => $desc->getOrderdArgs(),
     'named_args' => $desc->getNamedArgs(),
     'command_help' => $desc->getCommandHelp(),

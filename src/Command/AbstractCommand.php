@@ -41,16 +41,6 @@ abstract class AbstractCommand implements CommandInterface
     }
 
     /**
-     * Returns required modules by command
-     *
-     * @return array          list of class names(FQCN)
-     */
-    public function getRequiredModules() : array
-    {
-        return [];
-    }
-
-    /**
      * Returns DI conitaner
      *
      * @return DiContainerInterface

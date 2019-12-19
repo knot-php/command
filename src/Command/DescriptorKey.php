@@ -10,6 +10,7 @@ final class DescriptorKey
     const CLASS_ROOT           = 'class_root';
     const CLASS_NAME           = 'class_name';
     const CLASS_BASE           = 'class_base';
+    const REQUIRED             = 'required';
     const ORDERED_ARGS         = 'ordered_args';
     const NAMED_ARGS           = 'named_args';
     const COMMAND_HELP         = 'command_help';

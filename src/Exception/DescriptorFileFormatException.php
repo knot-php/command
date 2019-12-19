@@ -17,6 +17,6 @@ class DescriptorFileFormatException extends CommandException
      */
     public function __construct( string $spec_file, string $reason, int $code = 0, Throwable $prev = NULL )
     {
-        parent::__construct( "Invalid command descriptor file: $spec_file($reason)", $code, $prev );
+        parent::__construct( "[$spec_file] $reason", $code, $prev );
     }
 }

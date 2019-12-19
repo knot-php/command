@@ -50,6 +50,16 @@ final class CommandDescriptorTest extends TestCase
 
         $this->assertEquals('foo', $desc->getClassBase());
     }
+    public function testGetRequired()
+    {
+        $desc = new CommandDescriptor([
+            'required' => [
+                'foo', 'bar',
+            ]
+        ]);
+
+        $this->assertEquals(['foo', 'bar'], $desc->getRequired());
+    }
     public function testGetOrderdArgs()
     {
         $desc = new CommandDescriptor([

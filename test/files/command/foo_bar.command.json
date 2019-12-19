@@ -6,6 +6,7 @@
     "class_root": "C:/Workspace/GitHub/knot-php/command/test/include",
     "class_name": "KnotPhp.Command.Test.TestCommand",
     "class_base": "Test",
+    "required": [],
     "ordered_args": [
         "name",
         "favorite"

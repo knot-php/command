@@ -32,6 +32,7 @@ final class HelloWorldCommand extends AbstractCommand
             'class_root' => dirname(dirname(__DIR__)),
             'class_name' => self::class,
             'class_base' => 'Demo\\',
+            'required' => [],
             'ordered_args' => ['full_name', 'nickname'],
             'named_args' => ['--verbose' => 'verbose'],
             'command_help' => [

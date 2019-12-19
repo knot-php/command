@@ -33,13 +33,6 @@ interface CommandInterface
     public static function getDescriptor() : CommandDescriptor;
 
     /**
-     * Returns required modules by command
-     *
-     * @return array          list of class names(FQCN)
-     */
-    public function getRequiredModules() : array;
-
-    /**
      * Returns file system
      *
      * @return FileSystemInterface|null

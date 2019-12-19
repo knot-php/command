@@ -88,6 +88,7 @@ final class CommandExecService extends CommandBaseService
         $class_name = $descriptor->getClassName();
         $ordered_args = $descriptor->getOrderdArgs();
         $named_args = $descriptor->getNamedArgs();
+        $modules_required = $descriptor->getRequired();
 
         if (!class_exists($class_name)){
             throw new ClassNotFoundException($class_name);
@@ -101,8 +102,6 @@ final class CommandExecService extends CommandBaseService
         $command_obj = new $class_name($di);
 
         // install modules required by command
-        $modules_required = $command_obj->getRequiredModules();
-
         $this->app->installModules($modules_required);
 
         // execute command

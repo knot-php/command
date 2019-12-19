@@ -101,6 +101,7 @@ final class CommandDbFileService extends CommandBaseService
             $class_root         = $descriptor['class_root'] ?? '';             // i.e: /root/to/my/command
             $class_name         = $descriptor['class_name'] ?? '';             // i.e: MyPackage.MyCommand
             $class_base         = $descriptor['class_base'] ?? '';             // i.e: MyPackage
+            $required           = $descriptor['required'] ?? [];
             $ordered_args       = $descriptor['args']['ordered'] ?? [];
             $named_args         = $descriptor['args']['named'] ?? [];
             $command_help       = $descriptor['command_help'] ?? '';
@@ -111,6 +112,7 @@ final class CommandDbFileService extends CommandBaseService
                 'class_root' => $class_root,
                 'class_name' => $class_name,
                 'class_base' => $class_base,
+                'required' => $required,
                 'ordered_args' => $ordered_args,
                 'named_args' => $named_args,
                 'command_help' => $command_help,

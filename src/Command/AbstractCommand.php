@@ -10,11 +10,9 @@ use Stk2k\Util\Util;
 use KnotPhp\Command\Env\EnvKey;
 use KnotLib\Kernel\FileSystem\FileSystemInterface;
 use KnotLib\Kernel\NullObject\NullFileSystem;
-use KnotLib\Service\Exception\ServiceImplementationException;
 
 use KnotLib\Kernel\Di\DiContainerInterface;
-use KnotLib\Service\DiServiceTrait;
-use KnotLib\Service\Exception\ServiceNotFoundException;
+use KnotLib\Service\Util\DiServiceTrait;
 use KnotLib\Service\FileSystemService;
 use KnotLib\Service\LoggerService;
 use KnotLib\Service\ValidationService;
@@ -86,8 +84,7 @@ abstract class AbstractCommand implements CommandInterface
      *
      * @return FileSystemService
      *
-     * @throws ServiceNotFoundException
-     * @throws ServiceImplementationException
+     * @throws
      */
     protected function getFileSystemService() : FileSystemService
     {
@@ -99,8 +96,7 @@ abstract class AbstractCommand implements CommandInterface
      *
      * @return LoggerService
      *
-     * @throws ServiceNotFoundException
-     * @throws ServiceImplementationException
+     * @throws
      */
     protected function getLoggerService() : LoggerService
     {
@@ -112,8 +108,7 @@ abstract class AbstractCommand implements CommandInterface
      *
      * @return ValidationService
      *
-     * @throws ServiceNotFoundException
-     * @throws ServiceImplementationException
+     * @throws
      */
     protected function getValidationService() : ValidationService
     {

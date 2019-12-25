@@ -4,9 +4,8 @@ declare(strict_types=1);
 namespace KnotPhp\Command\Service;
 
 use KnotLib\Kernel\FileSystem\FileSystemInterface;
-use KnotLib\Service\BaseService;
 
-class CommandBaseService extends BaseService
+class CommandBaseService
 {
     /** @var FileSystemInterface */
     private $fs;

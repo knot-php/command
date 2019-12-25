@@ -9,7 +9,7 @@ use KnotLib\Kernel\Kernel\ApplicationInterface;
 use KnotLib\Console\Router\ShellDispatcherInterface;
 use KnotLib\Console\Router\ShellRouter;
 use KnotLib\Service\LoggerService;
-use KnotLib\Service\DiServiceTrait;
+use KnotLib\Service\Util\DiServiceTrait;
 use KnotPhp\Command\App\Responder\BaseCommandResponder;
 use KnotPhp\Command\App\Responder\SystemCommandResponder;
 use KnotPhp\Command\App\Responder\ErrorCommandResponder;

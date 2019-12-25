@@ -4,12 +4,9 @@ declare(strict_types=1);
 namespace KnotPhp\Command\Service;
 
 use KnotLib\Service\DI as ServiceDI;
-use KnotLib\Service\UriTrait;
 
 final class DI
 {
-    use UriTrait;
-
     //=====================================
     // Components
     //=====================================
@@ -36,21 +33,21 @@ final class DI
     const URI_SERVICE_LOGGER              = ServiceDI::URI_SERVICE_LOGGER;
 
     /* System Service */
-    const URI_SERVICE_SYSTEM              = 'service://system';
+    const URI_SERVICE_SYSTEM              = ServiceDI::SCHEME_SERVICE . 'system';
 
     /* Command Autoload Service */
-    const URI_SERVICE_COMMAND_AUTOLOAD    = 'service://command_autoload';
+    const URI_SERVICE_COMMAND_AUTOLOAD    = ServiceDI::SCHEME_SERVICE . 'command_autoload';
 
     /* Command DB File Service */
-    const URI_SERVICE_COMMAND_DB_FILE     = 'service://command_db_file';
+    const URI_SERVICE_COMMAND_DB_FILE     = ServiceDI::SCHEME_SERVICE . 'command_db_file';
 
     /* Alias DB File Service */
-    const URI_SERVICE_ALIAS_DB_FILE       = 'service://alias_db_file';
+    const URI_SERVICE_ALIAS_DB_FILE       = ServiceDI::SCHEME_SERVICE . 'alias_db_file';
 
     /* Command Descriptor Service */
-    const URI_SERVICE_COMMAND_DESCRIPTOR  = 'service://command_descriptor';
+    const URI_SERVICE_COMMAND_DESCRIPTOR  = ServiceDI::SCHEME_SERVICE . 'command_descriptor';
 
     /* Command Execute Service */
-    const URI_SERVICE_COMMAND_EXEC        = 'service://command_exec';
+    const URI_SERVICE_COMMAND_EXEC        = ServiceDI::SCHEME_SERVICE . 'command_exec';
 
 }

@@ -78,8 +78,10 @@ final class ModuleDependencyExplainComand extends AbstractCommand implements Com
         }
 
         try{
+            $fs = $this->getRuntimeFileSystem();
+
             /** @var ApplicationInterface $app */
-            $app = (new ReflectionClass($app_class))->newInstance(new CommandFileSystem());
+            $app = (new ReflectionClass($app_class))->newInstance($fs);
 
             $app->configure();
 

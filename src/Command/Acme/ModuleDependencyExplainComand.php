@@ -72,7 +72,7 @@ final class ModuleDependencyExplainComand extends AbstractCommand implements Com
         if (!class_exists($app_class)){
             throw new CommandExecutionException($this->getCommandId(), "Can not find the specified class: {$app_class}.");
         }
-        if (!($app_class instanceof ApplicationInterface)){
+        if (!in_array(ApplicationInterface::class, class_implements($app_class))){
             throw new CommandExecutionException($this->getCommandId(), "The specified class[$app_class] does not seems to be an application class.");
         }
 

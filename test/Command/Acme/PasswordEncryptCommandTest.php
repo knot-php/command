@@ -34,8 +34,8 @@ final class PasswordEncryptCommandTest extends TestCase
         "named": []
     },
     "command_help": [
-        "calgamo password:encrypt password",
-        "calgamo pass:enc password"
+        "knot password:encrypt password",
+        "knot pass:enc password"
     ]
 }
 JSON;
@@ -58,8 +58,13 @@ JSON;
 
         $output = explode(PHP_EOL, $output);
 
+        var_dump($output);
+
         $regex = '@encrypted: ([\x21-\x7e]+)@';
 
-        $this->assertEquals(1, preg_match($regex, $output[1]));
+        $this->assertEquals("cmd: password:encrypt", $output[0]);
+        $this->assertEquals("password: foo", $output[1]);
+        $this->assertEquals("input: foo", $output[2]);
+        $this->assertEquals(1, preg_match($regex, $output[3]));
     }
 }

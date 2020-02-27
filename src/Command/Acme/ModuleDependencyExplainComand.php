@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace KnotPhp\Command\Command\Acme;
 
+use KnotPhp\Command\FileSystem\CommandFileSystem;
 use ReflectionClass, Throwable;
 
 use KnotLib\Kernel\Kernel\ApplicationInterface;
@@ -78,7 +79,9 @@ final class ModuleDependencyExplainComand extends AbstractCommand implements Com
 
         try{
             /** @var ApplicationInterface $app */
-            $app = (new ReflectionClass($app_class))->newInstance();
+            $app = (new ReflectionClass($app_class))->newInstance([
+                new CommandFileSystem()
+            ]);
 
             $app->configure();
 

@@ -38,11 +38,12 @@ final class PasswordEncryptComand extends AbstractCommand implements CommandInte
             Key::CLASS_ROOT => dirname(dirname(__DIR__)),
             Key::CLASS_NAME => str_replace('\\', '.', self::class),
             Key::CLASS_BASE => 'KnotPhp.Command',
+            Key::REQUIRED => [],
             Key::ORDERED_ARGS => ['password'],
             Key::NAMED_ARGS => [],
             Key::COMMAND_HELP => [
-                'calgamo password:encrypt password',
-                'calgamo pass:enc password',
+                'knot password:encrypt password',
+                'knot pass:enc password',
             ]
         ]);
     }
@@ -52,16 +53,22 @@ final class PasswordEncryptComand extends AbstractCommand implements CommandInte
      */
     public function execute(array $args, ConsoleIOInterface $io): int
     {
+        $io->output('cmd: ' . self::getCommandId());
+
         $password = $args['password'] ?? '';
 
+        $io->output('password: ' . $password);
+
         if (empty($password)){
-            throw new CommandExecutionException($this->getCommandId(), 'Empty passowrd is specified.');
+            throw new CommandExecutionException($this->getCommandId(), 'Parameter[password] must be specified.');
         }
 
         $encrypted = password_hash($password, PASSWORD_DEFAULT);
 
         $io->output('input: ' . $password);
         $io->output('encrypted: ' . $encrypted);
+
+        $io->output('OK.');
 
         return 0;
     }

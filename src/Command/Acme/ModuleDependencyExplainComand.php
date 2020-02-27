@@ -80,6 +80,8 @@ final class ModuleDependencyExplainComand extends AbstractCommand implements Com
             /** @var ApplicationInterface $app */
             $app = (new ReflectionClass($app_class))->newInstance();
 
+            $app->configure();
+
             $required_modules = $app->getRequiredModules();
 
             $io->output('required modules:' . print_r($required_modules, true));

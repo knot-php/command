@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace KnotPhp\Command\Command\Acme;
 
-use KnotPhp\Command\FileSystem\CommandFileSystem;
 use ReflectionClass, Throwable;
 
 use KnotLib\Kernel\Kernel\ApplicationInterface;
@@ -38,6 +37,9 @@ final class ModuleDependencyExplainComand extends AbstractCommand implements Com
         return new CommandDescriptor([
             Key::COMMAND_ID => self::getCommandId(),
             Key::ALIASES => [
+                'mod:dependency:explain',
+                'mod:dependency:exp',
+                'mod:dep:explain',
                 'mod:dep:exp',
             ],
             Key::CLASS_ROOT => dirname(dirname(__DIR__)),
@@ -48,6 +50,8 @@ final class ModuleDependencyExplainComand extends AbstractCommand implements Com
             Key::NAMED_ARGS => [],
             Key::COMMAND_HELP => [
                 'knot module:dependency:explain app_class',
+                'knot mod:dependency:exp password app_class',
+                'knot mod:dep:explain password app_class',
                 'knot mod:dep:exp password app_class',
             ]
         ]);
@@ -89,10 +93,11 @@ final class ModuleDependencyExplainComand extends AbstractCommand implements Com
 
             $io->output('required modules:' . print_r($required_modules, true));
 
-            $resolved_modules = (new ModuleDependencyResolver($required_modules))->resolve(function($dependency_map, $modules_by_component) use($io){
+            $resolved_modules = (new ModuleDependencyResolver($required_modules))->resolve(function($dependency_map, $modules_by_component, $sort_logs) use($io){
 
                 $io->output('dependency map:' . print_r($dependency_map, true));
                 $io->output('modules by component:' . print_r($modules_by_component, true));
+                $io->output('sort logs:' . print_r($sort_logs, true));
 
             });
 

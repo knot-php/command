@@ -9,12 +9,10 @@ use KnotLib\Di\Container;
 use KnotLib\Kernel\Kernel\ApplicationInterface;
 use KnotLib\Kernel\Module\ComponentTypes;
 use KnotLib\Kernel\Module\ModuleInterface;
-use KnotLib\Kernel\Module\AbstractModule;
 use KnotLib\Kernel\Exception\ModuleInstallationException;
 use KnotLib\Service\LoggerService;
 
 use KnotPhp\Module\KnotService\KnotServiceModule;
-
 use KnotPhp\Command\Command\DefaultConsoleIO;
 use KnotPhp\Command\Service\AliasDbFileService;
 use KnotPhp\Command\Service\CommandAutoloadService;
@@ -26,14 +24,14 @@ use KnotPhp\Command\Service\SystemService;
 use KnotPhp\Command\Enum\EnumLogChannels;
 use KnotPhp\Command\Service\DI;
 
-class CommandDiModule extends AbstractModule implements ModuleInterface
+class CommandDiModule implements ModuleInterface
 {
     /**
      * Declare dependent on components
      *
      * @return array
      */
-    public static function requiredComponents() : array
+    public static function requiredComponentTypes() : array
     {
         return [];
     }

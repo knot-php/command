@@ -7,7 +7,7 @@ use Throwable;
 
 use KnotLib\Di\Container;
 use KnotLib\Kernel\Kernel\ApplicationInterface;
-use KnotLib\Kernel\Module\Components;
+use KnotLib\Kernel\Module\ComponentTypes;
 use KnotLib\Kernel\Module\ModuleInterface;
 use KnotLib\Kernel\Module\AbstractModule;
 use KnotLib\Kernel\Exception\ModuleInstallationException;
@@ -43,7 +43,7 @@ class CommandDiModule extends AbstractModule implements ModuleInterface
      */
     public static function declareComponentType(): string
     {
-        return Components::MODULE;
+        return ComponentTypes::APPLICATION;
     }
 
     /**
@@ -73,7 +73,7 @@ class CommandDiModule extends AbstractModule implements ModuleInterface
             $fs = $app->filesystem();
 
             //====================================
-            // Components
+            // ComponentTypes
             //====================================
 
             // app_config component

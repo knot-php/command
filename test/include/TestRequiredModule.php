@@ -13,7 +13,7 @@ final class TestRequiredModule implements ModuleInterface
     {
         return [];
     }
-    
+
     public static function requiredComponentTypes() : array
     {
         return [];

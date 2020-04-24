@@ -1,7 +1,7 @@
 <?php
 require dirname(__DIR__).'/vendor/autoload.php';
 
-(new KnotLib\Kernel\Knot)
+(new KnotLib\Kernel\Bootstrap)
     ->withFileSystem(new KnotPhp\Command\FileSystem\CommandFileSystem())
     ->withExceptionHandler(function(Throwable $e){
         echo $e->getMessage(), PHP_EOL;

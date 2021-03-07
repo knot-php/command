@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace KnotPhp\Command\Test;
+namespace KnotPhp\Command\Test\Command;
 
 use PHPUnit\Framework\TestCase;
 use KnotPhp\Command\Command\CommandDescriptor;

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace KnotPhp\Command\Test;
+namespace KnotPhp\Command\Test\Service;
 
 use PHPUnit\Framework\TestCase;
 
@@ -13,6 +13,10 @@ use KnotPhp\Command\Service\AliasDbFileService;
 use KnotPhp\Command\Service\CommandDbFileService;
 use KnotPhp\Command\Service\CommandDescriptorService;
 use KnotPhp\Command\Service\CommandExecService;
+use KnotPhp\Command\Test\TestFileSystemFactory;
+use KnotPhp\Command\Test\TestCommand;
+use KnotPhp\Command\Test\TestApplication;
+use KnotPhp\Command\Test\TestDiContainer;
 
 final class CommandExecServiceTest extends TestCase
 {
@@ -80,6 +84,6 @@ OUTPUT;
 
         $expected = str_replace("\n", PHP_EOL, $expected) . PHP_EOL;
 
-        $this->assertEquals($expected, $output);;
+        $this->assertEquals($expected, $output);
     }
 }

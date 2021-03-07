@@ -1,0 +1,23 @@
+{
+    "command_id": "foo:bar",
+    "aliases": [
+        "f:b"
+    ],
+    "class_root": "C:/Workspace/GitHub/knot-php/command/test",
+    "class_name": "KnotPhp.Command.Test.TestCommand",
+    "class_base": "Test",
+    "required": [
+        "KnotPhp.Command.Test.TestRequiredModule"
+    ],
+    "ordered_args": [
+        "name",
+        "favorite"
+    ],
+    "named_args": {
+        "--age": "age"
+    },
+    "command_help": [
+        "foo:bar name favorite [--age]",
+        "f:b name favorite [--age]"
+    ]
+}

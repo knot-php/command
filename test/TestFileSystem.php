@@ -21,7 +21,7 @@ final class TestFileSystem extends AbstractFileSystem implements FileSystemInter
             Dir::CONFIG    => $base_dir . '/config',
             Dir::LOGS      => $base_dir . '/logs',
             Dir::INCLUDE   => $base_dir . '/include',
-            Dir::TEMPLATE   => dirname(dirname(__DIR__)) . '/template',
+            Dir::TEMPLATE   => dirname(__DIR__) . '/template',
         ];
     }
 

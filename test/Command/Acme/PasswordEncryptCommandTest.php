@@ -1,10 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace KnotPhp\Command\Test;
+namespace KnotPhp\Command\Test\Command\Acme;
 
 use KnotPhp\Command\Command\DefaultConsoleIO;
 use PHPUnit\Framework\TestCase;
+use KnotPhp\Command\Test\TestDiContainer;
 
 use KnotPhp\Command\Command\Acme\PasswordEncryptComand;
 

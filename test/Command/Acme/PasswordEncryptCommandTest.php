@@ -58,7 +58,7 @@ JSON;
 
         $output = explode(PHP_EOL, $output);
 
-        var_dump($output);
+        //var_dump($output);
 
         $regex = '@encrypted: ([\x21-\x7e]+)@';
 

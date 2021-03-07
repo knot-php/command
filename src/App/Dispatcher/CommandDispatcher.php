@@ -55,7 +55,7 @@ class CommandDispatcher implements ShellDispatcherInterface
      *
      * @throws
      */
-    public function dispatch(string $path, array $vars, string $route_name) : bool
+    public function dispatch(string $path, array $vars, string $route_name) : void
     {
         global $argv;
 
@@ -104,7 +104,7 @@ class CommandDispatcher implements ShellDispatcherInterface
                     $system   = $container[DI::URI_SERVICE_SYSTEM];
                     (new SystemCommandResponder($logger))
                         ->version($system);
-                    return true;
+                    break;
 
                 // make command
                 case 'command.make':
@@ -113,7 +113,7 @@ class CommandDispatcher implements ShellDispatcherInterface
                     $io         = $container[DI::URI_COMPONENT_CONSOLE_IO];
                     (new CommandCommandResponder($container, $logger, $fs, $io))
                         ->makeCommand($desc_s, $provider_class);
-                    return true;
+                    break;
 
                 // install command
                 case 'command.install':
@@ -124,7 +124,7 @@ class CommandDispatcher implements ShellDispatcherInterface
                     $io         = $container[DI::URI_COMPONENT_CONSOLE_IO];
                     (new CommandCommandResponder($container, $logger, $fs, $io))
                         ->installCommand($desc_s, $command_db, $alias_db, $comand_id);
-                    return true;
+                    break;
 
                 // list command
                 case 'command.list':
@@ -132,7 +132,7 @@ class CommandDispatcher implements ShellDispatcherInterface
                     $io         = $container[DI::URI_COMPONENT_CONSOLE_IO];
                     (new CommandCommandResponder($container, $logger, $fs, $io))
                         ->listCommand($desc_s);
-                    return true;
+                    break;
 
                 // help command
                 case 'command.help':
@@ -141,7 +141,7 @@ class CommandDispatcher implements ShellDispatcherInterface
                     $io         = $container[DI::URI_COMPONENT_CONSOLE_IO];
                     (new CommandCommandResponder($container, $logger, $fs, $io))
                         ->helpCommand($desc_s, $comand_id);
-                    return true;
+                    break;
 
                 // autoload command
                 case 'command.autoload':
@@ -149,7 +149,7 @@ class CommandDispatcher implements ShellDispatcherInterface
                     $io         = $container[DI::URI_COMPONENT_CONSOLE_IO];
                     (new CommandCommandResponder($container, $logger, $fs, $io))
                         ->generateAutoloadCache($autoload);
-                    return true;
+                    break;
 
                 default:
                     throw new RouteNotFoundException($route_name);
@@ -161,6 +161,5 @@ class CommandDispatcher implements ShellDispatcherInterface
 
             (new BaseCommandResponder($logger))->failure( $e->getMessage() );
         }
-        return true;
     }
 }

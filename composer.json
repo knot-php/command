@@ -27,13 +27,13 @@
   },
   "autoload": {
     "psr-4": {
-      "KnotPhp\\Command\\": "src/"
+      "KnotPhp\\Command": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "KnotPhp\\Command\\Test\\": "test/include/",
-      "KnotPhp\\Command\\Demo\\": "demo/include/"
+      "KnotPhp\\Command\\Test": "test/include/",
+      "KnotPhp\\Command\\Demo": "demo/include/"
     }
   },
   "bin": [

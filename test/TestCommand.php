@@ -54,9 +54,9 @@ final class TestCommand extends AbstractCommand implements CommandInterface
         $favorite = $args['favorite'] ?? '';
         $age = $args['age'] ?? false;
 
-        $io->output('My name is: ' . $name);
-        $io->output('And my favorite is: ' . $favorite);
-        $io->output('I am ' . $age . ' years old.');
+        $io->output('My name is: ' . $name)->eol();
+        $io->output('And my favorite is: ' . $favorite)->eol();
+        $io->output('I am ' . $age . ' years old.')->eol();
 
         return 0;
     }

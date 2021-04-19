@@ -54,7 +54,7 @@ abstract class AbstractCommand implements CommandInterface
     public function handleException(Throwable $e, ConsoleIOInterface $io): bool
     {
         Util::dumpException($e, function($line) use($io){
-            $io->output($line);
+            $io->output($line)->eol();
         });
 
         return true;

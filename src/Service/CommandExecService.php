@@ -104,7 +104,7 @@ final class CommandExecService extends CommandBaseService
         // install modules required by command
         foreach($modules_required as $module){
             $this->app->installModule($module);
-            $this->io->output("Installed required module: {$module}");
+            $this->io->output("Installed required module: $module")->eol();
         }
 
         // execute command
@@ -112,7 +112,7 @@ final class CommandExecService extends CommandBaseService
         try{
             $combined_args = $this->getArgs($ordered_args, $named_args, $skip_args);
 
-            $this->io->output("Executing command({$command_id})");
+            $this->io->output("Executing command($command_id)")->eol();
             $ret = $command_obj->execute($combined_args, $this->io);
         }
         catch(Throwable $e)
@@ -122,7 +122,7 @@ final class CommandExecService extends CommandBaseService
             }
         }
 
-        $this->io->output(sprintf("Command(%s) finished with exit code %d", $command_id, $ret));
+        $this->io->output(sprintf("Command(%s) finished with exit code %d", $command_id, $ret))->eol();
 
         return $ret;
     }
@@ -133,7 +133,6 @@ final class CommandExecService extends CommandBaseService
      * @param int $skip_args
      *
      * @return array
-     * @noinspection PhpUnusedParameterInspection
      */
     private function getArgs(array $ordered_args, array $named_args, int $skip_args) : array
     {

@@ -62,11 +62,11 @@ final class ModuleDependencyExplainComand extends AbstractCommand implements Com
      */
     public function execute(array $args, ConsoleIOInterface $io): int
     {
-        $io->output('cmd: ' . self::getCommandId());
+        $io->output('cmd: ' . self::getCommandId())->eol();
 
         $app_class= $args['app_class'] ?? '';
 
-        $io->output('app_class: ' . $app_class);
+        $io->output('app_class: ' . $app_class)->eol();
 
         if (empty($app_class)){
             throw new CommandExecutionException($this->getCommandId(), 'Parameter[app_class] must be specified.');
@@ -91,24 +91,24 @@ final class ModuleDependencyExplainComand extends AbstractCommand implements Com
 
             $required_modules = $app->getRequiredModules();
 
-            $io->output('required modules:' . print_r($required_modules, true));
+            $io->output('required modules:' . print_r($required_modules, true))->eol();
 
             $resolved_modules = (new ModuleDependencyResolver($required_modules))->resolve(function($dependency_map, $modules_by_component, $sort_logs) use($io){
 
-                $io->output('dependency map:' . print_r($dependency_map, true));
-                $io->output('modules by component:' . print_r($modules_by_component, true));
-                $io->output('sort logs:' . print_r($sort_logs, true));
+                $io->output('dependency map:' . print_r($dependency_map, true))->eol();
+                $io->output('modules by component:' . print_r($modules_by_component, true))->eol();
+                $io->output('sort logs:' . print_r($sort_logs, true))->eol();
 
             });
 
-            $io->output('resolved modules:' . print_r($resolved_modules, true));
+            $io->output('resolved modules:' . print_r($resolved_modules, true))->eol();
 
-            $io->output('OK.');
+            $io->output('OK.')->eol();
         }
         catch(Throwable $e){
 
-            $io->output('Finished with error:' . $e->getMessage());
-            $io->output($e->getTraceAsString());
+            $io->output('Finished with error:' . $e->getMessage())->eol();
+            $io->output($e->getTraceAsString())->eol();
         }
 
         return 0;

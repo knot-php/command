@@ -53,11 +53,11 @@ final class PasswordEncryptComand extends AbstractCommand implements CommandInte
      */
     public function execute(array $args, ConsoleIOInterface $io): int
     {
-        $io->output('cmd: ' . self::getCommandId());
+        $io->output('cmd: ' . self::getCommandId())->eol();
 
         $password = $args['password'] ?? '';
 
-        $io->output('password: ' . $password);
+        $io->output('password: ' . $password)->eol();
 
         if (empty($password)){
             throw new CommandExecutionException($this->getCommandId(), 'Parameter[password] must be specified.');
@@ -65,10 +65,10 @@ final class PasswordEncryptComand extends AbstractCommand implements CommandInte
 
         $encrypted = password_hash($password, PASSWORD_DEFAULT);
 
-        $io->output('input: ' . $password);
-        $io->output('encrypted: ' . $encrypted);
+        $io->output('input: ' . $password)->eol();
+        $io->output('encrypted: ' . $encrypted)->eol();
 
-        $io->output('OK.');
+        $io->output('OK.')->eol();
 
         return 0;
     }

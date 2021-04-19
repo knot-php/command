@@ -30,17 +30,17 @@ try{
 
     $autoload_s->autoload();
 
-    $io->output('Execute command:');
+    $io->output('Execute command:')->eol();
     $exec->executeCommand($di, 'hello:world', 0);
 
-    $io->output('---------------------------');
+    $io->output('---------------------------')->eol();
 
-    $io->output('Execute alias command:');
+    $io->output('Execute alias command:')->eol();
     $exec->executeCommand($di, 'h:w', 0);
 
-    $io->output('---------------------------');
+    $io->output('---------------------------')->eol();
 
-    $io->output('Verbose switch off:');
+    $io->output('Verbose switch off:')->eol();
     $app->request(new ShellRequest([
         'Michael Jackson', 'MJ', '--verbose', '0'
     ]));

@@ -51,9 +51,9 @@ final class HelloWorldCommand extends AbstractCommand
         $nickname = $args['nickname'] ?? '';
         $verbose = $args['verbose'] ?? false;
 
-        $io->output('Hello, World! Mr.' . $full_name . '(' . $nickname . ')');
+        $io->output('Hello, World! Mr.' . $full_name . '(' . $nickname . ')')->eol();
         if ($verbose){
-            $io->output("I'll be back!");
+            $io->output("I'll be back!")->eol();
         }
 
         return 0;

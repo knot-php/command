@@ -8,22 +8,33 @@ final class DefaultConsoleIO implements ConsoleIOInterface
     /**
      * {@inheritDoc}
      */
-    public function ask(string $message) : string
+    public function ask(string $message, callable $callback = null) : ConsoleIOInterface
     {
         echo $message . PHP_EOL;
-        return trim(fgets(STDIN));
+        if ($callback){
+            $input = trim(fgets(STDIN));
+            ($callback)($input);
+        }
+        return $this;
     }
 
     /**
      * {@inheritDoc}
      */
-    public function output(string $message, bool $output_lineend = true)
+    public function output(string ... $messages) : ConsoleIOInterface
     {
-        if ($output_lineend){
-            echo $message . PHP_EOL;
+        foreach($messages as $msg){
+            echo $msg;
         }
-        else{
-            echo $message;
-        }
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function eol() : ConsoleIOInterface
+    {
+        echo PHP_EOL;
+        return $this;
     }
 }

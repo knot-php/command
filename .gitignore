@@ -19,3 +19,4 @@ logs/*
 cache/*
 test/files/cache/*.php
 test/files/logs/*.log
+.phpunit.result.cache

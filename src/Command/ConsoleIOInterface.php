@@ -8,17 +8,26 @@ interface ConsoleIOInterface
     /**
      * Input user command from console
      *
-     * @param string $message
+     * @param string $message               message to show in console
+     * @param callable|null $callback       callback to receive user input from console
      *
-     * @return string             use input command
+     * @return ConsoleIOInterface
      */
-    public function ask(string $message) : string;
+    public function ask(string $message, callable $callback = null) : ConsoleIOInterface;
 
     /**
      * Output message to console
      *
-     * @param string $message
-     * @param bool $output_lineend
+     * @param string[] $messages               message to show in console
+     *
+     * @return ConsoleIOInterface
      */
-    public function output(string $message, bool $output_lineend = true);
+    public function output(string ... $messages) : ConsoleIOInterface;
+
+    /**
+     * Output end of line
+     *
+     * @return ConsoleIOInterface
+     */
+    public function eol() : ConsoleIOInterface;
 }

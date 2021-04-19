@@ -23,7 +23,7 @@ final class CommandExecServiceTest extends TestCase
     /**
      * @throws
      */
-    public function setUp()
+    public function setUp() : void
     {
         parent::setUp();
 

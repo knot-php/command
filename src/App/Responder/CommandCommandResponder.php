@@ -70,7 +70,7 @@ class CommandCommandResponder extends BaseCommandResponder
                 throw new ClassImplementationException($provider_class, CommandDescriptorProviderInterface::class);
             }
 
-            $this->io->output(self::CONSOLE_SEPARATOR);
+            $this->io->output(self::CONSOLE_SEPARATOR)->eol();
 
             $descriptor_list = forward_static_call([$provider_class, 'provide'], $this->fs);
 
@@ -78,13 +78,13 @@ class CommandCommandResponder extends BaseCommandResponder
             foreach($descriptor_list as $descriptor){
                 $descriptor_path = $desc_s->generateCommandDescriptor($descriptor);
 
-                $this->io->output(sprintf('Generated descriptor: [%s]', basename($descriptor_path)));
+                $this->io->output(sprintf('Generated descriptor: [%s]', basename($descriptor_path)))->eol();
                 $total ++;
             }
 
-            $this->io->output(self::CONSOLE_SEPARATOR);
+            $this->io->output(self::CONSOLE_SEPARATOR)->eol();
 
-            $this->io->output(sprintf('Made %d command descriptor(s).', $total));
+            $this->io->output(sprintf('Made %d command descriptor(s).', $total))->eol();
         }
         catch(CommandException $e){
 
@@ -103,7 +103,7 @@ class CommandCommandResponder extends BaseCommandResponder
     public function installCommand(CommandDescriptorService $desc_s, CommandDbFileService $command_db, AliasDbFileService $alias_db, string $command_id)
     {
         try{
-            $this->io->output(self::CONSOLE_SEPARATOR);
+            $this->io->output(self::CONSOLE_SEPARATOR)->eol();
 
             $command_db->load();
 
@@ -116,7 +116,7 @@ class CommandCommandResponder extends BaseCommandResponder
 
                     $command_db->setDesciptor($descriptor->getCommandId(), $descriptor);
 
-                    $this->io->output(sprintf('Command installed: [%s]', $descriptor->getCommandId()));
+                    $this->io->output(sprintf('Command installed: [%s]', $descriptor->getCommandId()))->eol();
                     $total ++;
                 }
             }
@@ -127,7 +127,7 @@ class CommandCommandResponder extends BaseCommandResponder
 
                 $command_db->setDesciptor($descriptor->getCommandId(), $descriptor);
 
-                $this->io->output(sprintf('Command installed: [%s]', $descriptor->getCommandId()));
+                $this->io->output(sprintf('Command installed: [%s]', $descriptor->getCommandId()))->eol();
                 $total ++;
             }
 
@@ -136,9 +136,9 @@ class CommandCommandResponder extends BaseCommandResponder
             $alias_db->importAlias($command_db);
             $alias_db->save();
 
-            $this->io->output(self::CONSOLE_SEPARATOR);
+            $this->io->output(self::CONSOLE_SEPARATOR)->eol();
 
-            $this->io->output(sprintf('Saved %d commands into database.', $total));
+            $this->io->output(sprintf('Saved %d commands into database.', $total))->eol();
         }
         catch(CommandException $e){
 
@@ -156,22 +156,22 @@ class CommandCommandResponder extends BaseCommandResponder
         try{
             $total = 0;
 
-            $this->io->output(str_pad('ID', 25));
+            $this->io->output(str_pad('ID', 25))->eol();
 
-            $this->io->output(self::CONSOLE_SEPARATOR);
+            $this->io->output(self::CONSOLE_SEPARATOR)->eol();
 
             // read all descriptor files
             $command_dir = $this->fs->getFile(Dir::COMMAND, '*' . Command::COMMAND_DESCRIPTOR_SUFFIX);
             foreach(glob($command_dir) as $descriptor_file){
                 $descriptor = $desc_s->readCommandDescriptor($descriptor_file);
 
-                $this->io->output($descriptor->getCommandId());
+                $this->io->output($descriptor->getCommandId())->eol();
                 $total ++;
             }
 
-            $this->io->output(self::CONSOLE_SEPARATOR);
+            $this->io->output(self::CONSOLE_SEPARATOR)->eol();
 
-            $this->io->output(sprintf('%d commands found in database.', $total));
+            $this->io->output(sprintf('%d commands found in database.', $total))->eol();
         }
         catch(CommandException $e){
 
@@ -188,9 +188,9 @@ class CommandCommandResponder extends BaseCommandResponder
     public function helpCommand(CommandDescriptorService $desc_s, string $command_id)
     {
         try{
-            $this->io->output(str_pad('ID', 25) . 'COMMAND LINE');
+            $this->io->output(str_pad('ID', 25) . 'COMMAND LINE')->eol();
 
-            $this->io->output(self::CONSOLE_SEPARATOR);
+            $this->io->output(self::CONSOLE_SEPARATOR)->eol();
 
             if ($command_id === 'all' || empty($command_id)){
                 // read all descriptor files
@@ -207,7 +207,7 @@ class CommandCommandResponder extends BaseCommandResponder
                 $this->showCommandHelp($desc, false);
             }
 
-            $this->io->output(self::CONSOLE_SEPARATOR);
+            $this->io->output(self::CONSOLE_SEPARATOR)->eol();
         }
         catch(CommandException $e){
 
@@ -222,15 +222,15 @@ class CommandCommandResponder extends BaseCommandResponder
         if (is_array($command_help)){
             foreach($command_help as $key => $help){
                 $line = $key === 0 ? str_pad($desc->getCommandId(), 25) . $help : str_repeat(' ', 25) . $help;
-                $this->io->output($line);
+                $this->io->output($line)->eol();
             }
             if ($show_separatpr){
-                $this->io->output(self::CONSOLE_SEPARATOR);
+                $this->io->output(self::CONSOLE_SEPARATOR)->eol();
             }
         }
         else if (is_string($command_help)){
             $line = str_pad($desc->getCommandId(), 25) . $command_help;
-            $this->io->output($line);
+            $this->io->output($line)->eol();
         }
     }
 
@@ -244,7 +244,7 @@ class CommandCommandResponder extends BaseCommandResponder
         try{
             $autoload_file = $autoload_s->generateAutoloadFile();
 
-            $this->io->output('Generated autoload cache: ' . $autoload_file);
+            $this->io->output('Generated autoload cache: ' . $autoload_file)->eol();
         }
         catch(CommandException $e){
 
